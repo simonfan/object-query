@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/object-query-sub/operators/set.js - object-query</title>
+    <title>src/__object-query__/operators/range.js - object-query</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -84,7 +84,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src/object-query-sub/operators/set.js</h1>
+                        <h1 class="file-heading">File: src/__object-query__/operators/range.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -95,38 +95,44 @@ if (typeof define !== &#x27;function&#x27;) { var define = require(&#x27;amdefin
 define(function (require, exports, module) {
 	&#x27;use strict&#x27;;
 
-	var _ = require(&#x27;lodash&#x27;),
-		containers = require(&#x27;containers&#x27;);
-
 	/**
-	 * @method $in
-	 * @param expected {Array}
-	 * @param value {String|Number|Array}
-	 *     Array: returns &#x60;true&#x60; if any of the values is in &#x60;expected&#x60;.
+	 * Lesser than (&lt;).
+	 * @method $lt
+	 * @param expected {Number|String}
+	 * @param value {Number|String}
 	 */
-	exports.$in = function $in(expected, value) {
-		return _.isArray(value) ?
-			containers.containsAny(expected, value) : _.contains(expected, value);
+	exports.$lt = function $lt(expected, value) {
+		return value &lt; expected;
 	};
 
 	/**
-	 * @method $nin
-	 * @param expected {Array}
-	 * @param value {String|Number|Array}
-	 *     Array: returns &#x60;true&#x60; if any of the values is not in &#x60;expected&#x60;.
+	 * Lesser than or equal (&lt;=).
+	 * @method $lte
+	 * @param expected {Number|String}
+	 * @param value {Number|String}
 	 */
-	exports.$nin = function $nin(expected, value) {
-		return _.isArray(value) ?
-			!containers.containsAny(expected, value) : !_.contains(expected, value);
+	exports.$lte = function $lte(expected, value) {
+		return value &lt;= expected;
 	};
 
 	/**
-	 * @method $all
-	 * @param expected {Array}
-	 * @param value {Array}
+	 * Greater than (&gt;).
+	 * @method $gt
+	 * @param expected {Number|String}
+	 * @param value {Number|String}
 	 */
-	exports.$all = function $all(expected, value) {
-		return containers.containsAll(value, expected);
+	exports.$gt = function $gt(expected, value) {
+		return value &gt; expected;
+	};
+
+	/**
+	 * Greater than or equal (&gt;=).
+	 * @method $gte
+	 * @param expected {Number|String}
+	 * @param value {Number|String}
+	 */
+	exports.$gte = function $gte(expected, value) {
+		return value &gt;= expected;
 	};
 });
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/object-query-sub/operators/match.js - object-query</title>
+    <title>src/__object-query__/operators/set.js - object-query</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -84,7 +84,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src/object-query-sub/operators/match.js</h1>
+                        <h1 class="file-heading">File: src/__object-query__/operators/set.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -95,45 +95,38 @@ if (typeof define !== &#x27;function&#x27;) { var define = require(&#x27;amdefin
 define(function (require, exports, module) {
 	&#x27;use strict&#x27;;
 
-	var _ = require(&#x27;lodash&#x27;);
+	var _ = require(&#x27;lodash&#x27;),
+		containers = require(&#x27;containers&#x27;);
 
 	/**
-	 * @class operators
-	 * @static
+	 * @method $in
+	 * @param expected {Array}
+	 * @param value {String|Number|Array}
+	 *     Array: returns &#x60;true&#x60; if any of the values is in &#x60;expected&#x60;.
 	 */
-
-	/**
-	 * Effectively does the matching against a single value
-	 * @method $matchSingle
-	 * @param expected {String|Number|RegExp}
-	 *    String|Number: expected === value
-	 *    RegExp: expected.match
-	 * @param value {String|Number|Boolean}
-	 *    Cannot be Array!
-	 * @return {Boolean} True if matches, false if not.
-	 */
-	exports.$matchSingle = function $matchSingle(expected, value) {
-		return _.isRegExp(expected) ? expected.test(value) : expected === value;
+	exports.$in = function $in(expected, value) {
+		return _.isArray(value) ?
+			containers.containsAny(expected, value) : _.contains(expected, value);
 	};
 
 	/**
-	 * Verify if &#x60;value&#x60; supplied attends the &#x60;expected&#x60;.
-	 * Behaves according to the type of &#x60;expected&#x60;. See {{#crossLink &#x27;MongoQueryOperators/$matchSingle:method&#x27;}}{{/crossLink}}.
-	 * If &#x60;value&#x60; is an array of values, returns true if ANY of the
-	 * values attends the &#x60;expected&#x60;.
-	 *
-	 * @method $match
-	 * @param expected {String|Number|RegExp}
-	 * @param value {String|Number|Boolean|Array}
-	 * @return {Boolean} True if matches, false if not.
+	 * @method $nin
+	 * @param expected {Array}
+	 * @param value {String|Number|Array}
+	 *     Array: returns &#x60;true&#x60; if any of the values is not in &#x60;expected&#x60;.
 	 */
-	exports.$match = function $match(expected, value) {
+	exports.$nin = function $nin(expected, value) {
 		return _.isArray(value) ?
-			_.any(value, function (v) {
-				return exports.$matchSingle(expected, v);
-			})
-			:
-			exports.$matchSingle(expected, value);
+			!containers.containsAny(expected, value) : !_.contains(expected, value);
+	};
+
+	/**
+	 * @method $all
+	 * @param expected {Array}
+	 * @param value {Array}
+	 */
+	exports.$all = function $all(expected, value) {
+		return containers.containsAll(value, expected);
 	};
 });
 

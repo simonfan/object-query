@@ -1,7 +1,7 @@
 {
   "name": "object-query",
   "main": "./src",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Match objects in mongoDb's fashion.",
   "repository": {
     "type": "git",
