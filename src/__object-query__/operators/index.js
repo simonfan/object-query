@@ -33,7 +33,14 @@ define(function (require, exports, module) {
 			// that should be applied simultaneously to
 			// the value. All must be satisfied.
 			return _.every(criterion, function (expected, operator) {
-				return exports[operator](expected, value);
+
+				var op = exports[operator];
+
+				if (!op) {
+					throw new Error('The operator ' + operator + ' is not supported by object-query.');
+				} else {
+					return op(expected, value);
+				}
 			});
 
 		} else {

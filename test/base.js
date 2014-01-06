@@ -147,6 +147,18 @@
 				tutu(this.sp).should.be.false;
 				tutu(this.mg).should.be.true;
 			});
+
+			it('throws error when operators are not correctly defined', function () {
+				var wrong = objectQuery({
+					dishes: ['tutu', 'feijao tropeiro']
+				});
+
+				try {
+					wrong(this.sp);
+				} catch (e) {
+					e.should.be.ok;
+				}
+			})
 		});
 
 		describe('deep query', function () {
