@@ -355,7 +355,7 @@
             "line": 37,
             "description": "Returns a function that compares documents according to a specific criteria.",
             "itemtype": "method",
-            "name": "objectMatcher",
+            "name": "objectQuery",
             "params": [
                 {
                     "name": "criteria",
@@ -365,7 +365,19 @@
             ],
             "class": "",
             "module": "ObjectMatcher"
+        },
+        {
+            "file": "src/index.js",
+            "line": 50,
+            "description": "Glue some lodash methods.",
+            "class": "",
+            "module": "ObjectMatcher"
         }
     ],
-    "warnings": []
+    "warnings": [
+        {
+            "message": "Missing item type\nGlue some lodash methods.",
+            "line": " src/index.js:50"
+        }
+    ]
 }

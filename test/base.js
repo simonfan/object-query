@@ -16,13 +16,13 @@
 		define(deps, factory);
 	}
 
-})('test', function(objectMatcher, should) {
+})('test', function(objectQuery, should) {
 	'use strict';
 
-	describe('query = objectMatcher(criteria {Object})', function () {
+	describe('query = objectQuery(criteria {Object})', function () {
 
 		it('is a function', function () {
-			var query = objectMatcher();
+			var query = objectQuery();
 
 			query.should.be.type('function');
 		});
@@ -32,7 +32,10 @@
 		beforeEach(function () {
 			var locations = this.locations = [];
 
-			var brasil, sp, mg, saopaulo, campinas, belohorizonte, ouropreto;
+			var brasil,
+				sp, mg,
+				saopaulo, campinas, belohorizonte, ouropreto,
+				saude, butanta, belavista, savassi;
 
 			brasil = this.brasil = {
 				name: 'Brasil',
@@ -46,7 +49,6 @@
 				type: 'state',
 				country: brasil,
 				population: 41901219,
-				cities: [{ name: 'Sao Paulo' }, { name: 'Campinas'} ],
 				dishes: ['virado', 'cafe']
 			};
 
@@ -56,7 +58,31 @@
 				country: brasil,
 				population: 19855332,
 				dishes: ['tutu', 'feijao tropeiro', 'feijoada', 'queijo']
-			}
+			};
+
+
+
+			// districts
+			saude = this.saude = {
+				name: 'Saude',
+				type: 'district',
+			};
+
+			butanta = this.butanta = {
+				name: 'Butanta',
+				type: 'district',
+			};
+
+			belavista = this.belavista = {
+				name: 'Bela Vista',
+				type: 'district',
+			};
+
+			savassi = this.savassi = {
+				name: 'Savassi',
+				type: 'district'
+			};
+
 
 			// cities
 			saopaulo = this.saopaulo = {
@@ -64,6 +90,7 @@
 				type: 'city',
 				state: sp,
 				population: 11316149,
+				districts: [saude, butanta, belavista]
 			};
 
 
@@ -78,7 +105,8 @@
 				name: 'Belo Horizonte',
 				type: 'city',
 				state: mg,
-				population: 2479175
+				population: 2479175,
+				districts: [savassi]
 			};
 
 			ouropreto = this.ouropreto = {
@@ -103,7 +131,7 @@
 
 		describe('basic query', function () {
 			it('identical', function () {
-				var stateMatcher = objectMatcher({
+				var stateMatcher = objectQuery({
 					type: 'state',
 				});
 
@@ -112,19 +140,48 @@
 			});
 
 			it('match against array property', function () {
-				var hasSaoPauloAsCity = objectMatcher({
-					'cities.name': 'Sao Paulo'
+				var tutu = objectQuery({
+					dishes: 'tutu'
 				});
 
-				hasSaoPauloAsCity(this.sp).should.be.true;
+				tutu(this.sp).should.be.false;
+				tutu(this.mg).should.be.true;
+			});
+		});
+
+		describe('deep query', function () {
+			it('identical match', function () {
+				var fromSPstate = objectQuery({
+					'state.name': 'Sao Paulo'
+				});
+
+				fromSPstate(this.saopaulo)
+					.should.be.true;
+
+				fromSPstate(this.belohorizonte)
+					.should.be.false;
+			});
+
+			it('returns false if property does not exitst', function () {
+				var fromMGstate = objectQuery({
+					'state.name': 'Minas Gerais'
+				});
+
+				fromMGstate(this.belohorizonte)
+					.should.be.true;
+
+				fromMGstate({
+					name: 'state-less'
+				}).should.be.false;
+
 			});
 		});
 
 		describe('range query', function () {
 
-			it('greaterThan = objectMatcher({ prop: { $gt: limit } })', function () {
+			it('greaterThan = objectQuery({ prop: { $gt: limit } })', function () {
 
-				var populationGreaterThan10Million = objectMatcher({ population: { $gt: 10000000 }});
+				var populationGreaterThan10Million = objectQuery({ population: { $gt: 10000000 }});
 
 				populationGreaterThan10Million(this.saopaulo).should.be.true;
 
@@ -132,8 +189,8 @@
 
 			});
 
-			it('aggregate = objectMatcher({ prop1: { $gt: bottomLimit }, prop2: { $lt: topLimit } })', function () {
-				var populationBetween1mAnd5m = objectMatcher({
+			it('aggregate = objectQuery({ prop1: { $gt: bottomLimit }, prop2: { $lt: topLimit } })', function () {
+				var populationBetween1mAnd5m = objectQuery({
 					population: { $gt: 1000000, $lt: 5000000 }
 				});
 
@@ -145,8 +202,49 @@
 
 				populationBetween1mAnd5m(this.ouropreto)
 					.should.be.false;
-			})
+			});
 
+		});
+
+
+		describe('set query', function () {
+			describe('$in = objectQuery({ prop: { $in: [\'eitherThis\', \'or\', \'that\'] }})', function () {
+
+				it('matches basics', function () {
+					var viradoOuMoqueca = objectQuery({
+						dishes: {
+							$in: ['moqueca', 'virado']
+						}
+					});
+
+					viradoOuMoqueca({ dishes: ['moqueca'] }).should.be.true;
+					viradoOuMoqueca(this.sp).should.be.true;
+					viradoOuMoqueca(this.mg).should.be.false;
+				});
+
+				it('matches deep', function () {
+					var savassiOrSaude = objectQuery({
+						'districts.name': {
+							$in: ['Saude', 'Savassi']
+						}
+					});
+
+					savassiOrSaude({
+						districts: [
+							{ name: 'Saude' }
+						]
+					}).should.be.true;
+
+					savassiOrSaude(this.belohorizonte)
+						.should.be.true;
+
+					savassiOrSaude(this.saopaulo)
+						.should.be.true;
+
+					savassiOrSaude(this.ouropreto)
+						.should.be.false;
+				});
+			});
 		});
 	});
 });

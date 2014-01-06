@@ -40,6 +40,7 @@ define(function (require, exports, module) {
 					break;
 
 				} else {
+
 					// otherwise, just keep looping
 					continue;
 				}

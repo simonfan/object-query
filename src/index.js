@@ -37,29 +37,32 @@ define(function (require, exports, module) {
 	/**
 	 * Returns a function that compares documents according to a specific criteria.
 	 *
-	 * @method objectMatcher
+	 * @method objectQuery
 	 * @param criteria {Object}
 	 */
-	var objectMatcher = function objectMatcher(criteria) {
+	var objectQuery = function objectQuery(criteria) {
 		criteria = criteria || {};
 
 		// create a function
-		var func = _.partial(evaluateObject, criteria);
+		return _.partial(evaluateObject, criteria);
+	};
 
-		func.filter = function filter(arr) {
-			_.filter(arr, func);
+	/**
+	 * Glue some lodash methods.
+	 */
+	var _methods = [
+		'every', 'all',
+		'some', 'any',
+		'filter',
+		'find',
+		'reject'
+	];
+
+	_.each(_methods, function (m) {
+		objectQuery[m] = function (collection, criteria) {
+			return _[m](collection, objectQuery(criteria));
 		};
+	});
 
-		return func;
-	};
-
-	objectMatcher.find = function find(collection, criteria) {
-		return _.find(collection, objectMatcher(criteria));
-	};
-
-	objectMatcher.filter = function filter(collection, criteria) {
-		return _.filter(collection, objectMatcher(criteria));
-	};
-
-	return objectMatcher;
+	return objectQuery;
 });
