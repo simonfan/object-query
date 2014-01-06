@@ -16,8 +16,8 @@ define(function (require, exports, module) {
 	'use strict';
 
 	var _ = require('lodash'),
-		match = require('./object-matcher-sub/match'),
-		find = require('./object-matcher-sub/find');
+		match = require('./object-query-sub/match'),
+		find = require('./object-query-sub/find');
 
 	/**
 	 * Evaluates a document against a set of criteria.
@@ -40,7 +40,7 @@ define(function (require, exports, module) {
 	 * @method objectMatcher
 	 * @param criteria {Object}
 	 */
-	function objectMatcher(criteria) {
+	var objectMatcher = function objectMatcher(criteria) {
 		criteria = criteria || {};
 
 		// create a function
@@ -51,7 +51,15 @@ define(function (require, exports, module) {
 		};
 
 		return func;
-	}
+	};
+
+	objectMatcher.find = function find(collection, criteria) {
+		return _.find(collection, objectMatcher(criteria));
+	};
+
+	objectMatcher.filter = function filter(collection, criteria) {
+		return _.filter(collection, objectMatcher(criteria));
+	};
 
 	return objectMatcher;
 });

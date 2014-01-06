@@ -1,11 +1,11 @@
 {
-  "name": "object-matcher",
+  "name": "object-query",
   "main": "./src",
   "version": "0.1.1",
   "description": "Match objects in mongoDb's fashion.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonfan/object-matcher.git"
+    "url": "https://github.com/simonfan/object-query.git"
   },
   "dependencies": {
     "amdefine": ">=0.1.0",

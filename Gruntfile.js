@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 
 		yuidoc: {
 			compile: {
-				name: 'object-matcher',
+				name: 'object-query',
 				version: '0.0.0',
 			//	description: '',
 			// 	url: '',
@@ -103,9 +103,9 @@ module.exports = function (grunt) {
 					// (must coincide with that defined in mainConfigFile)
 					baseUrl: './src',
 					// module name
-					name: 'object-matcher',
+					name: 'object-query',
 					// output here
-					out: 'built/object-matcher.js',
+					out: 'built/object-query.js',
 					// config file
 					mainConfigFile: 'amdconfig.js',
 

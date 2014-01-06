@@ -1,25 +1,25 @@
 {
     "project": {
-        "name": "object-matcher",
+        "name": "object-query",
         "version": "0.0.0"
     },
     "files": {
-        "src/object-matcher-submodules/operators/boolean.js": {
-            "name": "src/object-matcher-submodules/operators/boolean.js",
+        "src/object-query-sub/operators/boolean.js": {
+            "name": "src/object-query-sub/operators/boolean.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src/object-matcher-submodules/operators/index.js": {
-            "name": "src/object-matcher-submodules/operators/index.js",
+        "src/object-query-sub/operators/index.js": {
+            "name": "src/object-query-sub/operators/index.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src/object-matcher-submodules/operators/match.js": {
-            "name": "src/object-matcher-submodules/operators/match.js",
+        "src/object-query-sub/operators/match.js": {
+            "name": "src/object-query-sub/operators/match.js",
             "modules": {},
             "classes": {
                 "operators": 1
@@ -27,15 +27,15 @@
             "fors": {},
             "namespaces": {}
         },
-        "src/object-matcher-submodules/operators/range.js": {
-            "name": "src/object-matcher-submodules/operators/range.js",
+        "src/object-query-sub/operators/range.js": {
+            "name": "src/object-query-sub/operators/range.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src/object-matcher-submodules/operators/set.js": {
-            "name": "src/object-matcher-submodules/operators/set.js",
+        "src/object-query-sub/operators/set.js": {
+            "name": "src/object-query-sub/operators/set.js",
             "modules": {},
             "classes": {},
             "fors": {},
@@ -61,7 +61,7 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src/object-matcher-submodules/operators/match.js",
+            "file": "src/object-query-sub/operators/match.js",
             "line": 10,
             "description": "AMD and CJS module."
         }
@@ -76,56 +76,56 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "ObjectMatcher",
-            "file": "src/object-matcher-submodules/operators/match.js",
+            "file": "src/object-query-sub/operators/match.js",
             "line": 10,
             "static": 1
         }
     },
     "classitems": [
         {
-            "file": "src/object-matcher-submodules/operators/boolean.js",
+            "file": "src/object-query-sub/operators/boolean.js",
             "line": 8,
             "itemtype": "method",
             "name": "$e",
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/boolean.js",
+            "file": "src/object-query-sub/operators/boolean.js",
             "line": 15,
             "itemtype": "method",
             "name": "$ne",
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/boolean.js",
+            "file": "src/object-query-sub/operators/boolean.js",
             "line": 22,
             "itemtype": "method",
             "name": "$not",
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/boolean.js",
+            "file": "src/object-query-sub/operators/boolean.js",
             "line": 27,
             "itemtype": "method",
             "name": "$or",
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/boolean.js",
+            "file": "src/object-query-sub/operators/boolean.js",
             "line": 32,
             "itemtype": "method",
             "name": "$and",
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/boolean.js",
+            "file": "src/object-query-sub/operators/boolean.js",
             "line": 37,
             "itemtype": "method",
             "name": "$exists",
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/index.js",
+            "file": "src/object-query-sub/operators/index.js",
             "line": 20,
             "description": "Evaluates a value against criterion",
             "itemtype": "method",
@@ -145,7 +145,7 @@
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/match.js",
+            "file": "src/object-query-sub/operators/match.js",
             "line": 15,
             "description": "Effectively does the matching against a single value",
             "itemtype": "method",
@@ -169,7 +169,7 @@
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/match.js",
+            "file": "src/object-query-sub/operators/match.js",
             "line": 29,
             "description": "Verify if `value` supplied attends the `expected`.\nBehaves according to the type of `expected`. See {{#crossLink 'MongoQueryOperators/$matchSingle:method'}}{{/crossLink}}.\nIf `value` is an array of values, returns true if ANY of the\nvalues attends the `expected`.",
             "itemtype": "method",
@@ -193,7 +193,7 @@
             "class": "operators"
         },
         {
-            "file": "src/object-matcher-submodules/operators/range.js",
+            "file": "src/object-query-sub/operators/range.js",
             "line": 8,
             "description": "Lesser than (<).",
             "itemtype": "method",
@@ -213,7 +213,7 @@
             "class": ""
         },
         {
-            "file": "src/object-matcher-submodules/operators/range.js",
+            "file": "src/object-query-sub/operators/range.js",
             "line": 18,
             "description": "Lesser than or equal (<=).",
             "itemtype": "method",
@@ -233,7 +233,7 @@
             "class": ""
         },
         {
-            "file": "src/object-matcher-submodules/operators/range.js",
+            "file": "src/object-query-sub/operators/range.js",
             "line": 28,
             "description": "Greater than (>).",
             "itemtype": "method",
@@ -253,7 +253,7 @@
             "class": ""
         },
         {
-            "file": "src/object-matcher-submodules/operators/range.js",
+            "file": "src/object-query-sub/operators/range.js",
             "line": 38,
             "description": "Greater than or equal (>=).",
             "itemtype": "method",
@@ -273,7 +273,7 @@
             "class": ""
         },
         {
-            "file": "src/object-matcher-submodules/operators/set.js",
+            "file": "src/object-query-sub/operators/set.js",
             "line": 11,
             "itemtype": "method",
             "name": "$in",
@@ -292,7 +292,7 @@
             "class": ""
         },
         {
-            "file": "src/object-matcher-submodules/operators/set.js",
+            "file": "src/object-query-sub/operators/set.js",
             "line": 22,
             "itemtype": "method",
             "name": "$nin",
@@ -311,7 +311,7 @@
             "class": ""
         },
         {
-            "file": "src/object-matcher-submodules/operators/set.js",
+            "file": "src/object-query-sub/operators/set.js",
             "line": 33,
             "itemtype": "method",
             "name": "$all",

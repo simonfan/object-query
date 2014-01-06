@@ -6,7 +6,7 @@ require.config({
 		text: '../bower_components/requirejs-text/text',
 		mocha: '../node_modules/mocha/mocha',
 		should: '../node_modules/should/should',
-		'object-matcher': 'index',
+		'object-query': 'index',
 		deep: '../bower_components/deep/built/deep',
 		jquery: '../bower_components/jquery/jquery',
 		containers: '../bower_components/containers/built/containers',

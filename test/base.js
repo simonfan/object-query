@@ -4,7 +4,7 @@
 		// node
 		'.././src' :
 		// browser
-		'object-matcher',
+		'object-query',
 		// dependencies for the test
 		deps = [mod, 'should'];
 
@@ -19,12 +19,12 @@
 })('test', function(objectMatcher, should) {
 	'use strict';
 
-	describe('matcher = objectMatcher(criteria {Object})', function () {
+	describe('query = objectMatcher(criteria {Object})', function () {
 
 		it('is a function', function () {
-			var matcher = objectMatcher();
+			var query = objectMatcher();
 
-			matcher.should.be.type('function');
+			query.should.be.type('function');
 		});
 
 
@@ -101,7 +101,7 @@
 
 		});
 
-		describe('basic matcher', function () {
+		describe('basic query', function () {
 			it('identical', function () {
 				var stateMatcher = objectMatcher({
 					type: 'state',
@@ -120,7 +120,7 @@
 			});
 		});
 
-		describe('range matcher', function () {
+		describe('range query', function () {
 
 			it('greaterThan = objectMatcher({ prop: { $gt: limit } })', function () {
 
