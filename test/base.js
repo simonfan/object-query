@@ -245,6 +245,55 @@
 						.should.be.false;
 				});
 			});
+
+			describe('$nin = objectQuery({ prop: { $nin: [] }})', function () {
+				it('basics', function () {
+					var notTutuNorVirado = objectQuery({
+						dishes: {
+							$nin: ['tutu', 'virado']
+						}
+					});
+
+					notTutuNorVirado(this.sp)
+						.should.be.false;
+
+					notTutuNorVirado(this.mg)
+						.should.be.false;
+
+					notTutuNorVirado({
+						dishes: ['lalala', 'balalala']
+					}).should.be.true;
+				})
+			});
+
+			describe('$all', function () {
+				it('basics', function () {
+					var tutuAndVirado = objectQuery({
+						dishes: {
+							$all: ['tutu', 'virado']
+						}
+					});
+
+					tutuAndVirado(this.sp)
+						.should.be.false;
+
+					tutuAndVirado(this.mg)
+						.should.be.false;
+
+					var tutuAndQueijo = objectQuery({
+						dishes: {
+							$all: ['tutu', 'queijo']
+						}
+					});
+
+					tutuAndQueijo(this.sp)
+						.should.be.false;
+
+					tutuAndQueijo(this.mg)
+						.should.be.true;
+				})
+			})
 		});
+
 	});
 });
