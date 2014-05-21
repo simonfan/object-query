@@ -1,12 +1,12 @@
 {
   "name": "object-query",
   "main": "built/object-query.js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Match objects in mongoDb's fashion.",
   "dependencies": {
     "lodash": "~2.4.1",
     "containers": "*",
-    "deep": "*"
+    "deep": "0.1.2"
   },
   "devDependencies": {
     "requirejs": "*",
@@ -14,5 +14,10 @@
     "underscore": "*",
     "jquery": "*",
     "qunit": "*"
+  },
+  "resolutions": {
+    "deep": "0.1.2",
+    "subject": "0.5.8",
+    "itr": "0.1.6"
   }
 }

@@ -28,6 +28,25 @@
 		});
 
 
+		it('stupid test', function () {
+
+
+			var query = objectQuery({
+				id: '1',
+			});
+
+
+			query({
+
+				id: "1",
+				url: "http://en.wikipedia.org/wiki/Mobile_commerce",
+				title: "Mobile commerce - Wikipedia, the free encyclopedia",
+
+			}).should.be.true;
+
+		});
+
+
 
 		beforeEach(function () {
 			var locations = this.locations = [];
