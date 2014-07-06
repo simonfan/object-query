@@ -331,7 +331,30 @@
         },
         {
             "file": "src/index.js",
-            "line": 22,
+            "line": 23,
+            "description": "Just as states the name...",
+            "params": [
+                {
+                    "name": "criteria",
+                    "description": "[description]",
+                    "type": "[type]"
+                },
+                {
+                    "name": "object",
+                    "description": "[description]",
+                    "type": "[type]"
+                }
+            ],
+            "return": {
+                "description": "[description]",
+                "type": "[type]"
+            },
+            "class": "",
+            "module": "ObjectMatcher"
+        },
+        {
+            "file": "src/index.js",
+            "line": 39,
             "description": "Evaluates a document against a set of criteria.",
             "itemtype": "method",
             "name": "evaluateObject",
@@ -352,7 +375,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 37,
+            "line": 61,
             "description": "Returns a function that compares documents according to a specific criteria.",
             "itemtype": "method",
             "name": "objectQuery",
@@ -368,7 +391,7 @@
         },
         {
             "file": "src/index.js",
-            "line": 50,
+            "line": 74,
             "description": "Glue some lodash methods.",
             "class": "",
             "module": "ObjectMatcher"
@@ -376,8 +399,12 @@
     ],
     "warnings": [
         {
+            "message": "Missing item type\nJust as states the name...",
+            "line": " src/index.js:23"
+        },
+        {
             "message": "Missing item type\nGlue some lodash methods.",
-            "line": " src/index.js:50"
+            "line": " src/index.js:74"
         }
     ]
 }

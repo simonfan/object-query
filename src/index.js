@@ -19,6 +19,23 @@ define(function (require, exports, module) {
 		match = require('./__object-query__/match'),
 		find = require('./__object-query__/find');
 
+
+	/**
+	 * Just as states the name...
+	 *
+	 * @param  {[type]} criteria [description]
+	 * @param  {[type]} object   [description]
+	 * @return {[type]}          [description]
+	 */
+	function evaluateObjectAgainstSingleCriteria(criteria, object) {
+		// loop through criteria
+		return _.every(criteria, function (criterion, keys) {
+
+			return match(criterion, object, keys);
+		});
+
+	}
+
 	/**
 	 * Evaluates a document against a set of criteria.
 	 *
@@ -27,11 +44,18 @@ define(function (require, exports, module) {
 	 * @param criteria {Object}
 	 */
 	function evaluateObject(criteria, object) {
-		// loop through criteria
-		return _.every(criteria, function (criterion, keys) {
 
-			return match(criterion, object, keys);
-		});
+		if (_.isArray(criteria)) {
+
+			// array of criterias
+			// [criteria, criteria, criteria, ...]
+			return _.any(criteria, function (criteria) {
+				return evaluateObjectAgainstSingleCriteria(criteria, object);
+			});
+		} else {
+			// single criteria
+			return evaluateObjectAgainstSingleCriteria(criteria, object);
+		}
 	}
 
 	/**
