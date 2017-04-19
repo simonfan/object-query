@@ -8,7 +8,8 @@
     "url": "https://github.com/simonfan/object-query.git"
   },
   "dependencies": {
-    "object-path-walker": "^1.0.0"
+    "containers": "0.0.1",
+    "object-path-walker": "0.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

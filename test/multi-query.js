@@ -103,4 +103,25 @@ describe('objectQuery multi-query', function () {
 
 
 	});
+
+	it('is fine (:', function () {
+
+
+		var possibilities = [];
+
+		possibilities.push({
+			name: 'Belo Horizonte'
+		});
+
+		possibilities.push({
+			population: 70227
+		});
+
+
+		// filter
+		var res = objectQuery.filter(this.locations, possibilities);
+
+		res.length.should.eql(2);
+
+	});
 });
